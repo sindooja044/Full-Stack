@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 
 const Taskform = ({addTask}) => {
-    const [inputValue, setInputValue]=useState("");
+    const [title, setTitle]=useState("");
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
-       await addTask(inputValue);
-       setInputValue("")
+       await addTask(title);
+       setTitle("")
     }
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input value={inputValue} type="text" name="input" placeholder='enter the task' onChange={(e)=>setInputValue(e.target.value)}/>
+        <input value={title} type="text" name="input" placeholder='enter the task' onChange={(e)=>setTitle(e.target.value)}/>
         <button type="submit">Add</button>
-        
+
       </form>
     </div>
   )

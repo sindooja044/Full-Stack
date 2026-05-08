@@ -5,11 +5,11 @@ import Tasklist from './components/Tasklist';
 const App = () => {
     const [tasks, setTasks]=useState([]);
 
-    const addTask=async (inputValue)=>{
+    const addTask=async (title)=>{
         const res=await fetch('http://localhost:5000/api/tasks',{
             method:"POST",
             headers:{"content-Type":'application/json'},
-            body:JSON.stringify({title:inputValue}),
+            body:JSON.stringify({title}),
 
         });
         console.log(res);
@@ -37,10 +37,27 @@ const App = () => {
      setTasks(tasks.map((task)=>task._id===id?updatedTask : task))
 
    }
+   const updateTask=async (id,title)=>{
+        const res=await fetch(`http://localhost:5000/api/tasks/${id}`,{
+            method:"PUT",
+            headers:{"content-Type":'application/json'},
+            body:JSON.stringify({title}),
+
+        });
+        console.log(res);
+        const data=await res.json()
+        console.log(data);
+      setTasks((prev) =>
+  prev.map((task) =>
+    task._id === id ? data : task
+  )
+)
+
+    }
   return (
     <div>
       <Taskform addTask={addTask} />
-      <Tasklist  tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask}/>
+      <Tasklist  tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} updateTask={updateTask}/>
     </div>
   )
 }

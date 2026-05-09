@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Taskform from './components/Taskform';
 import Tasklist from './components/Tasklist';
-import Taskname from './components/Taskname';
+//import Taskname from './components/Taskname';
 import { TaskContext } from './context/TaskContext';
 import './index.css'
 import { useContext } from 'react';

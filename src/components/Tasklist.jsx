@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { TaskContext } from "../context/TaskContext";
+import { useContext } from "react";
 
-const Tasklist = ({ tasks, deleteTask, toggleTask, updateTask }) => {
+const Tasklist = ({ deleteTask, toggleTask, updateTask }) => {
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
+  const {tasks,setTasks}=useContext(TaskContext)
   return (
     <div>
       {tasks.map((task) => (

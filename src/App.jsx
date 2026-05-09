@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import Taskform from './components/Taskform';
 import Tasklist from './components/Tasklist';
+import Taskname from './components/Taskname';
+import { TaskContext } from './context/TaskContext';
+import './index.css'
+import { useContext } from 'react';
 
 const App = () => {
-    const [tasks, setTasks]=useState([]);
+   
+    const {tasks,setTasks}=useContext(TaskContext)
 
     const addTask=async (title)=>{
         const res=await fetch('http://localhost:5000/api/tasks',{
@@ -57,7 +62,8 @@ const App = () => {
   return (
     <div>
       <Taskform addTask={addTask} />
-      <Tasklist  tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} updateTask={updateTask}/>
+      <Tasklist  deleteTask={deleteTask} toggleTask={toggleTask} updateTask={updateTask}/>
+      {/*<Taskname/>*/}
     </div>
   )
 }
